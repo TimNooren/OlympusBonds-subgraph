@@ -11,31 +11,32 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
-export class ExampleEntity extends Entity {
+export class Bond extends Entity {
   constructor(id: string) {
     super();
     this.set("id", Value.fromString(id));
 
-    this.set("count", Value.fromBigInt(BigInt.zero()));
+    this.set("owner", Value.fromBytes(Bytes.empty()));
     this.set("deposit", Value.fromBigInt(BigInt.zero()));
     this.set("payout", Value.fromBigInt(BigInt.zero()));
+    this.set("remaining", Value.fromBigInt(BigInt.zero()));
   }
 
   save(): void {
     let id = this.get("id");
-    assert(id != null, "Cannot save ExampleEntity entity without an ID");
+    assert(id != null, "Cannot save Bond entity without an ID");
     if (id) {
       assert(
         id.kind == ValueKind.STRING,
-        "Cannot save ExampleEntity entity with non-string ID. " +
+        "Cannot save Bond entity with non-string ID. " +
           'Considering using .toHex() to convert the "id" to a string.'
       );
-      store.set("ExampleEntity", id.toString(), this);
+      store.set("Bond", id.toString(), this);
     }
   }
 
-  static load(id: string): ExampleEntity | null {
-    return changetype<ExampleEntity | null>(store.get("ExampleEntity", id));
+  static load(id: string): Bond | null {
+    return changetype<Bond | null>(store.get("Bond", id));
   }
 
   get id(): string {
@@ -47,13 +48,13 @@ export class ExampleEntity extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get count(): BigInt {
-    let value = this.get("count");
-    return value!.toBigInt();
+  get owner(): Bytes {
+    let value = this.get("owner");
+    return value!.toBytes();
   }
 
-  set count(value: BigInt) {
-    this.set("count", Value.fromBigInt(value));
+  set owner(value: Bytes) {
+    this.set("owner", Value.fromBytes(value));
   }
 
   get deposit(): BigInt {
@@ -72,5 +73,14 @@ export class ExampleEntity extends Entity {
 
   set payout(value: BigInt) {
     this.set("payout", Value.fromBigInt(value));
+  }
+
+  get remaining(): BigInt {
+    let value = this.get("remaining");
+    return value!.toBigInt();
+  }
+
+  set remaining(value: BigInt) {
+    this.set("remaining", Value.fromBigInt(value));
   }
 }

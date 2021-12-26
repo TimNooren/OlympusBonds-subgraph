@@ -1,6 +1,7 @@
-type ExampleEntity @entity {
+type Bond @entity {
   id: ID!
-  count: BigInt!
-  deposit: BigInt! # uint256
-  payout: BigInt! # uint256
+  owner: Bytes!
+  deposit: BigInt!
+  payout: BigInt!
+  remaining: BigInt!
 }

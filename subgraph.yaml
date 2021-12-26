@@ -13,26 +13,13 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - BondCreated
-        - BondPriceChanged
-        - BondRedeemed
-        - ControlVariableAdjustment
-        - OwnershipPulled
-        - OwnershipPushed
+        - Bond
       abis:
         - name: OlympusCVXBondDepository
           file: ./abis/OlympusCVXBondDepository.json
       eventHandlers:
         - event: BondCreated(uint256,indexed uint256,indexed uint256,indexed uint256)
           handler: handleBondCreated
-        - event: BondPriceChanged(indexed uint256,indexed uint256)
-          handler: handleBondPriceChanged
         - event: BondRedeemed(indexed address,uint256,uint256)
           handler: handleBondRedeemed
-        - event: ControlVariableAdjustment(uint256,uint256,uint256,bool)
-          handler: handleControlVariableAdjustment
-        - event: OwnershipPulled(indexed address,indexed address)
-          handler: handleOwnershipPulled
-        - event: OwnershipPushed(indexed address,indexed address)
-          handler: handleOwnershipPushed
       file: ./src/mapping.ts
