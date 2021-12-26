@@ -1,0 +1,6 @@
+type ExampleEntity @entity {
+  id: ID!
+  count: BigInt!
+  deposit: BigInt! # uint256
+  payout: BigInt! # uint256
+}
