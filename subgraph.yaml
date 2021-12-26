@@ -8,6 +8,7 @@ dataSources:
     source:
       address: "0x767e3459A35419122e5F6274fB1223d75881E0a9"
       abi: OlympusCVXBondDepository
+      startBlock: 13628054
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
